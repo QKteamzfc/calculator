@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+     $scope.num =  '';
+     $scope.result = '';
+     $scope.clickNum = function (num) {
+     	$scope.num += num;
+     };
+     $scope.clickBack = function () {
+     	$scope.num = $scope.num.substr(0, $scope.num.length-1);
+     	$scope.result = '';
+     }
+     $scope.clickClear = function () {
+     	$scope.num = '';
+     	$scope.result = '';
+     }
+     $scope.clickequal = function () {
+     	$scope.result = '=' + eval($scope.num);
+     }
+ });
+</script>
+
+<style type="text/css">
+    .top{
+    	width: 40%;
+    	position: absolute;
+    	left: 30%;
+    	background-color: #87cefa;
+    }
+	.mid{
+		width: 40%;
+		height: 50%;
+		position: absolute;
+		left: 30%;
+		top: 10%;
+		background-color: #ddd;
+	}
+	.table1{
+		width: 100%;
+		height: 80px;
+		text-align: right;
+	}
+	.table{
+		width: 100%;
+		height: 100%;
+		font-weight: bold;
+	}
+	button {
+		width:100% !important;
+		height: 70px !important;
+		font-size: 25px !important;
+	}
+	.font{
+		font-weight: bold;
+		font-size: 30px;
+	}
+</style>
+
+</head>
+<body ng-controller="myCtrl">
+    <div class="top"><table class="table1"><tr><td>
+    	<p class="font">{{num}}</p>
+    	<p class="font">{{result}}</p>
+    </td></tr></table></div>
+    <div class="mid"><table class="table">
+        <tr>
+            <td><button class="btn btn-primary" ng-click="clickClear()">Clear</button></td>
+            <td><button class="btn btn-primary" ng-click="clickNum('(')">(</button></td>
+            <td><button class="btn btn-primary" ng-click="clickNum(')')">)</button></td>
+            <td><button class="btn btn-primary" ng-click="clickBack()">Back</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('7')">7</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('8')">8</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('9')">9</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('/')">/</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('4')">4</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('5')">5</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('6')">6</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('*')">*</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('1')">1</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('2')">2</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('3')">3</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('-')">-</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.sqrt(')">sqrt</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('0')">0</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('.')">.</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('+')">+</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.sin(')">sin</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.cos(')">cos</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.tan(')">tan</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.cot(')">cot</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.pow(')">^</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.PI')">pi</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum(',')">,</button></td>
+        	<td rowspan="2"><button class="btn btn-primary" style="height:155px !important;" ng-click="clickequal()">=</button></td>
+        </tr>
+        <tr>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.log10(')">log</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.log(')">ln</button></td>
+        	<td><button class="btn btn-primary" ng-click="clickNum('Math.exp(')">e</button></td>
+        </tr>
+    </table></div>
+</body>
+</html>
